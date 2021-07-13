@@ -360,6 +360,7 @@ SRC = $(call rwildcard, *.c, *.h)
 # Define all source files required
 PROJECT_SOURCE_FILES ?= \
     entities/entities.c \
+    screens/screens.c \
     utils/utils.c \
     entities/player/player.c \
     entities/mob/mob.c \

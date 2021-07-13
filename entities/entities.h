@@ -28,12 +28,14 @@ void unload_character(Character *character);
 Character *load_player(void);
 void set_player_direction(Character *player);
 void animate_player(Character *player, int FPS);
+void assemble_player_movement(Character *player);
 
 // Mob
 Character *load_mob(void);
-void mob_ai(Character *mob);
 void set_mob_direction(Character *mob);
 void animate_mob(Character *mob, int FPS);
+void change_mob_direction_over_time(Character *mob);
+void assemble_mob_movement(Character *mob);
 
 // Collision
 bool is_mob_colliding(Character *player, Character *mob);

@@ -95,7 +95,7 @@ bool is_mob_colliding(Character *player, Character *mob)
     return CheckCollisionRecs(player_rectangle, mob_rectangle);
 }
 
-void mob_ai(Character *mob)
+void change_mob_direction_over_time(Character *mob)
 {
     static int frames_counter = 0;
 
@@ -108,7 +108,11 @@ void mob_ai(Character *mob)
     {
         frames_counter++;
     }
+}
 
+void assemble_mob_movement(Character *mob)
+{
+    change_mob_direction_over_time(mob);
     animate_mob(mob, 60);
     move_character(mob);
 }

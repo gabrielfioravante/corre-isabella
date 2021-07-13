@@ -81,3 +81,10 @@ void animate_player(Character *player, int FPS)
         }
     }
 }
+
+void assemble_player_movement(Character *player)
+{
+    set_player_direction(player);
+    move_character(player);
+    animate_player(player, 60);
+}
