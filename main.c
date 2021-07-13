@@ -7,6 +7,8 @@
 
 #define MAX_BATCH_ELEMENTS  5000
 
+typedef enum game_screen { INTRO, GAMEPLAY, ENDING } game_screen;
+
 int main()
 {
     srand(time(NULL));
@@ -14,9 +16,9 @@ int main()
     // Initialization
     const int screenWidth = 922;
     const int screenHeight = 519;
+    game_screen current_screen = GAMEPLAY;
 
     InitWindow(screenWidth, screenHeight, "Corre, Isabella!");
-
     init_characters();
 
     SetTargetFPS(60);
@@ -24,19 +26,40 @@ int main()
     // Main game loop
     while (!WindowShouldClose())
     {
-        move_characters();
+        // Update
+        switch (current_screen)
+        {
+            case INTRO:
+                break;
+            case GAMEPLAY:
+                move_characters();
+                break;
+            case ENDING:
+                break;
+        }
 
+        // Draw
         BeginDrawing();
-
         DrawFPS(10, 10);
-        draw_characters();
-        ClearBackground(RAYWHITE);
 
+        switch (current_screen)
+        {
+            case INTRO:
+                break;
+            case GAMEPLAY:
+                draw_characters();
+                break;
+            case ENDING:
+                break;
+        }
+
+        ClearBackground(RAYWHITE);
         EndDrawing();
     }
 
-//    unload_character(player);
-    CloseWindow(); // Close window and OpenGL context
+    // De-Initialization
+    unload_characters();
+    CloseWindow();
 
     return 0;
 }

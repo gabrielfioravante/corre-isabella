@@ -38,3 +38,13 @@ void draw_characters(void)
         draw_character(*(mob + i));
     }
 }
+
+void unload_characters(void)
+{
+    unload_character(player);
+
+    for (int i = 0; i < MOB_QUANTITY; i++)
+    {
+        unload_character(*(mob + i));
+    }
+}
