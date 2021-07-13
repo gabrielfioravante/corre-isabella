@@ -1,69 +1,81 @@
-#include <stdlib.h> 
+#include <stdlib.h>
+#include <stdio.h>
 #include "raylib.h"
 #include "../entities.h"
 
-Character * load_player(void)
+Character *load_player(void)
 {
-    Character * player = (Character *) malloc(sizeof(Character));
+    Character *player = (Character *)malloc(sizeof(Character));
 
     player->texture = LoadTexture("./resources/player.png");
 
-    player->frame.x = 0.0f;
-    player->frame.y = (float) (player->texture.height/21) * 14; 
-    player->frame.width = (float) (player->texture.width/13);
-    player->frame.height = (float) (player->texture.height/21); 
+    player->animation.current_frame = 0;
+    player->animation.frames_counter = 0;
+    player->animation.frame_speed = 10;
 
-    player->position.x = ((float) GetScreenWidth() / 2) - player->frame.width;
-    player->position.y = ((float) GetScreenHeight() / 2) - player->frame.height;
+    player->direction.x = 0;
+    player->direction.y = 0;
+
+    player->frame.x = 0.0f;
+    player->frame.y = (float)(player->texture.height / 21) * 14;
+    player->frame.width = (float)(player->texture.width / 13);
+    player->frame.height = (float)(player->texture.height / 21);
+
+    player->position.x = ((float)GetScreenWidth() / 2) - player->frame.width;
+    player->position.y = ((float)GetScreenHeight() / 2) - player->frame.height;
 
     return player;
 }
 
-Vector2 set_player_direction(Character * player)
+void set_player_direction(Character *player)
 {
-    Vector2 player_direction = {0, 0};
+    player->direction.x = 0;
+    player->direction.y = 0;
 
-    if (IsKeyDown(KEY_RIGHT) && player->position.x <  GetScreenWidth() - (int) player->texture.width/13) player_direction.x = 1;
-    if (IsKeyDown(KEY_LEFT) && player->position.x > 0) player_direction.x = -1;
-    if (IsKeyDown(KEY_UP) && player->position.y > 0) player_direction.y = -1;
-    if (IsKeyDown(KEY_DOWN) && player->position.y <  GetScreenHeight() - (int) player->texture.height/21) player_direction.y = 1;
-
-    return player_direction;
+    if (IsKeyDown(KEY_RIGHT) && player->position.x < GetScreenWidth() - (int)player->texture.width / 13)
+        player->direction.x = 1;
+    if (IsKeyDown(KEY_LEFT) && player->position.x > 0)
+        player->direction.x = -1;
+    if (IsKeyDown(KEY_UP) && player->position.y > 0)
+        player->direction.y = -1;
+    if (IsKeyDown(KEY_DOWN) && player->position.y < GetScreenHeight() - (int)player->texture.height / 21)
+        player->direction.y = 1;
 }
 
-void animate_player(Character * player, int FPS)
+void animate_player(Character *player, int FPS)
 {
-    static int current_frame = 0;
-    static int frames_counter = 0;
-    static int frame_speed = 10;
+    player->animation.frames_counter++;
 
-    frames_counter++;
-
-    if(frames_counter >= (FPS/frame_speed))
+    if (player->animation.frames_counter >= (FPS / player->animation.frame_speed))
     {
-        frames_counter = 0;
-        current_frame++;
+        player->animation.frames_counter = 0;
+        player->animation.current_frame++;
 
-        if(current_frame == 7) current_frame = 0;
+        if (player->animation.current_frame == 7)
+            player->animation.current_frame = 0;
 
-        if (IsKeyDown(KEY_RIGHT)) {
-            player->frame.y = (float) (player->texture.height/21) * 11; 
-            player->frame.x = (float)current_frame*(float)player->frame.width;
+        if (IsKeyDown(KEY_RIGHT))
+        {
+            player->frame.y = (float)(player->texture.height / 21) * 11;
+            player->frame.x = (float)player->animation.current_frame * (float)player->frame.width;
         }
 
-        if (IsKeyDown(KEY_LEFT)) {
-            player->frame.y = (float) (player->texture.height/21) * 9; 
-            player->frame.x = (float)current_frame*(float)player->frame.width;
+        if (IsKeyDown(KEY_LEFT))
+        {
+            player->frame.y = (float)(player->texture.height / 21) * 9;
+            player->frame.x = (float)player->animation.current_frame * (float)player->frame.width;
         }
 
-        if (IsKeyDown(KEY_UP)) {
-            player->frame.y = (float) (player->texture.height/21) * 8; 
-            player->frame.x = (float)current_frame*(float)player->frame.width;
+        if (IsKeyDown(KEY_UP))
+        {
+            player->frame.y = (float)(player->texture.height / 21) * 8;
+            player->frame.x = (float)player->animation.current_frame * (float)player->frame.width;
         }
 
-        if (IsKeyDown(KEY_DOWN)) {
-            player->frame.y = (float) (player->texture.height/21) * 10; 
-            player->frame.x = (float)current_frame*(float)player->frame.width;
+        if (IsKeyDown(KEY_DOWN))
+        {
+            player->frame.y = (float)(player->texture.height / 21) * 10;
+            player->frame.x = (float)player->animation.current_frame * (float)player->frame.width;
         }
     }
 }
