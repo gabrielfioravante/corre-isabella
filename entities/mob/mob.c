@@ -65,25 +65,25 @@ void animate_mob(Character *mob, int FPS)
         if (mob->direction.x > 0)
         {
             mob->frame.y = MOB_BOX_SIZE * 11;
-            mob->frame.x = (float)mob->animation.current_frame * (float)mob->frame.width;
+            mob->frame.x = (float)mob->animation.current_frame * MOB_BOX_SIZE;
         }
 
         if (mob->direction.x < 0)
         {
             mob->frame.y = MOB_BOX_SIZE * 9;
-            mob->frame.x = (float)mob->animation.current_frame * (float)mob->frame.width;
+            mob->frame.x = (float)mob->animation.current_frame * MOB_BOX_SIZE;
         }
 
         if (mob->direction.y < 0)
         {
             mob->frame.y = MOB_BOX_SIZE * 8;
-            mob->frame.x = (float)mob->animation.current_frame * (float)mob->frame.width;
+            mob->frame.x = (float)mob->animation.current_frame * MOB_BOX_SIZE;
         }
 
         if (mob->direction.y > 0)
         {
             mob->frame.y = MOB_BOX_SIZE * 10;
-            mob->frame.x = (float)mob->animation.current_frame * (float)mob->frame.width;
+            mob->frame.x = (float)mob->animation.current_frame * MOB_BOX_SIZE;
         }
     }
 }
