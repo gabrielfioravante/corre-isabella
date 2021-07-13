@@ -3,6 +3,8 @@
 #include "raylib.h"
 #include "../entities.h"
 
+#define PLAYER_BOX_SIZE 64.0
+
 Character *load_player(void)
 {
     Character *player = (Character *)malloc(sizeof(Character));
@@ -17,12 +19,12 @@ Character *load_player(void)
     player->direction.y = 0;
 
     player->frame.x = 0.0f;
-    player->frame.y = (float)(player->texture.height / 21) * 14;
-    player->frame.width = (float)(player->texture.width / 13);
-    player->frame.height = (float)(player->texture.height / 21);
+    player->frame.y = PLAYER_BOX_SIZE * 14;
+    player->frame.width = PLAYER_BOX_SIZE;
+    player->frame.height = PLAYER_BOX_SIZE;
 
-    player->position.x = ((float)GetScreenWidth() / 2) - player->frame.width;
-    player->position.y = ((float)GetScreenHeight() / 2) - player->frame.height;
+    player->position.x = ((float)GetScreenWidth() / 2) - PLAYER_BOX_SIZE;
+    player->position.y = ((float)GetScreenHeight() / 2) - PLAYER_BOX_SIZE;
 
     return player;
 }
@@ -32,13 +34,13 @@ void set_player_direction(Character *player)
     player->direction.x = 0;
     player->direction.y = 0;
 
-    if (IsKeyDown(KEY_RIGHT) && player->position.x < GetScreenWidth() - (int)player->texture.width / 13)
+    if (IsKeyDown(KEY_RIGHT) && player->position.x < GetScreenWidth() - PLAYER_BOX_SIZE)
         player->direction.x = 1;
     if (IsKeyDown(KEY_LEFT) && player->position.x > 0)
         player->direction.x = -1;
     if (IsKeyDown(KEY_UP) && player->position.y > 0)
         player->direction.y = -1;
-    if (IsKeyDown(KEY_DOWN) && player->position.y < GetScreenHeight() - (int)player->texture.height / 21)
+    if (IsKeyDown(KEY_DOWN) && player->position.y < GetScreenHeight() - PLAYER_BOX_SIZE)
         player->direction.y = 1;
 }
 
@@ -56,26 +58,26 @@ void animate_player(Character *player, int FPS)
 
         if (IsKeyDown(KEY_RIGHT))
         {
-            player->frame.y = (float)(player->texture.height / 21) * 11;
-            player->frame.x = (float)player->animation.current_frame * (float)player->frame.width;
+            player->frame.y = PLAYER_BOX_SIZE * 11;
+            player->frame.x = (float)player->animation.current_frame * PLAYER_BOX_SIZE;
         }
 
         if (IsKeyDown(KEY_LEFT))
         {
-            player->frame.y = (float)(player->texture.height / 21) * 9;
-            player->frame.x = (float)player->animation.current_frame * (float)player->frame.width;
+            player->frame.y = PLAYER_BOX_SIZE * 9;
+            player->frame.x = (float)player->animation.current_frame * PLAYER_BOX_SIZE;
         }
 
         if (IsKeyDown(KEY_UP))
         {
-            player->frame.y = (float)(player->texture.height / 21) * 8;
-            player->frame.x = (float)player->animation.current_frame * (float)player->frame.width;
+            player->frame.y = PLAYER_BOX_SIZE * 8;
+            player->frame.x = (float)player->animation.current_frame * PLAYER_BOX_SIZE;
         }
 
         if (IsKeyDown(KEY_DOWN))
         {
-            player->frame.y = (float)(player->texture.height / 21) * 10;
-            player->frame.x = (float)player->animation.current_frame * (float)player->frame.width;
+            player->frame.y = PLAYER_BOX_SIZE * 10;
+            player->frame.x = (float)player->animation.current_frame * PLAYER_BOX_SIZE;
         }
     }
 }
