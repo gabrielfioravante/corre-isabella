@@ -1,0 +1,1 @@
+int generate_random_int(int max_number, int min_number);
