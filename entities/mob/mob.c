@@ -24,14 +24,14 @@ Character *load_mob(void)
     mob->frame.width = MOB_BOX_SIZE;
     mob->frame.height = MOB_BOX_SIZE;
 
-    mob->position.x = generate_random_int((GetScreenWidth() - 100), MOB_BOX_SIZE);
-    mob->position.y = generate_random_int((GetScreenHeight() - 100), MOB_BOX_SIZE);
+    mob->position.x = generate_random_int((GetScreenWidth() - MOB_BOX_SIZE), MOB_BOX_SIZE);
+    mob->position.y = generate_random_int((GetScreenHeight() - MOB_BOX_SIZE), MOB_BOX_SIZE);
     return mob;
 }
 
 void set_mob_direction(Character *mob)
 {
-    if (mob->position.x <= MOB_BOX_SIZE || mob->position.x >= (GetScreenWidth() - MOB_BOX_SIZE))
+    if (mob->position.x <= MOB_BOX_SIZE * 2 || mob->position.x >= (float)GetScreenWidth() - (MOB_BOX_SIZE * 2))
     {
         mob->direction.x = mob->direction.x * -1;
     }
@@ -40,7 +40,7 @@ void set_mob_direction(Character *mob)
         mob->direction.x = generate_random_int(1, -1);
     }
 
-    if (mob->position.y <= (float)MOB_BOX_SIZE || mob->position.y >= (float)(GetScreenHeight() - MOB_BOX_SIZE))
+    if (mob->position.y <= MOB_BOX_SIZE * 2 || mob->position.y >= (float)GetScreenHeight() - (MOB_BOX_SIZE * 2))
     {
         mob->direction.y = mob->direction.y * -1;
     }
@@ -86,13 +86,6 @@ void animate_mob(Character *mob, int FPS)
             mob->frame.x = (float)mob->animation.current_frame * MOB_BOX_SIZE;
         }
     }
-}
-
-bool is_mob_colliding(Character *player, Character *mob)
-{
-    Rectangle mob_rectangle = {mob->position.x, mob->position.y, mob->frame.height, mob->frame.width};
-    Rectangle player_rectangle = {player->position.x, player->position.y, player->frame.height, player->frame.width};
-    return CheckCollisionRecs(player_rectangle, mob_rectangle);
 }
 
 void change_mob_direction_over_time(Character *mob)

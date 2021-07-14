@@ -33,6 +33,7 @@ int main()
                 break;
             case GAMEPLAY:
                 move_characters();
+                if(gameplay_should_end()) current_screen = ENDING;
                 break;
             case ENDING:
                 break;
@@ -50,6 +51,7 @@ int main()
                 draw_characters();
                 break;
             case ENDING:
+                DrawText("Você não correu o bastante! :(", 220, GetScreenHeight() / 2, 30, RED);
                 break;
         }
 

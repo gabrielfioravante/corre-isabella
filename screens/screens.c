@@ -31,12 +31,12 @@ void move_characters(void)
 
 void draw_characters(void)
 {
-    draw_character(player);
-
     for (int i = 0; i < MOB_QUANTITY; i++)
     {
         draw_character(*(mob + i));
     }
+
+    draw_character(player);
 }
 
 void unload_characters(void)
@@ -47,4 +47,18 @@ void unload_characters(void)
     {
         unload_character(*(mob + i));
     }
+}
+
+bool gameplay_should_end(void)
+{
+    static int collision_count = 0;
+    const int COLLISION_LIMIT = 10;
+
+    for (int i = 0; i < MOB_QUANTITY; i++)
+    {
+        if(are_characters_colliding(player, *(mob + i)))
+            collision_count++;
+    }
+
+    return collision_count >= COLLISION_LIMIT;
 }

@@ -24,7 +24,7 @@ Character *load_player(void)
     player->frame.height = PLAYER_BOX_SIZE;
 
     player->position.x = ((float)GetScreenWidth() / 2) - PLAYER_BOX_SIZE;
-    player->position.y = ((float)GetScreenHeight() / 2) - PLAYER_BOX_SIZE;
+    player->position.y = 0;
 
     return player;
 }

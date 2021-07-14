@@ -33,3 +33,9 @@ void move_character(Character *character)
     }
 }
 
+bool are_characters_colliding(Character *player, Character *mob)
+{
+    Rectangle mob_rectangle = {mob->position.x, mob->position.y, mob->frame.height / 2, mob->frame.width / 2};
+    Rectangle player_rectangle = {player->position.x, player->position.y, player->frame.height / 2, player->frame.width / 2};
+    return CheckCollisionRecs(player_rectangle, mob_rectangle);
+}

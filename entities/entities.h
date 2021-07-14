@@ -38,5 +38,5 @@ void change_mob_direction_over_time(Character *mob);
 void assemble_mob_movement(Character *mob);
 
 // Collision
-bool is_mob_colliding(Character *player, Character *mob);
+bool are_characters_colliding(Character *player, Character *mob);
 #endif
