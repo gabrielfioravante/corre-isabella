@@ -19,7 +19,7 @@ int main()
     game_screen current_screen = GAMEPLAY;
 
     InitWindow(screenWidth, screenHeight, "Corre, Isabella!");
-    init_characters();
+    init_gameplay();
 
     SetTargetFPS(60);
 
@@ -32,7 +32,7 @@ int main()
             case INTRO:
                 break;
             case GAMEPLAY:
-                move_characters();
+                update_gameplay();
                 if(gameplay_should_end()) current_screen = ENDING;
                 break;
             case ENDING:
@@ -48,7 +48,7 @@ int main()
             case INTRO:
                 break;
             case GAMEPLAY:
-                draw_characters();
+                draw_gameplay();
                 break;
             case ENDING:
                 DrawText("Você não correu o bastante! :(", 220, GetScreenHeight() / 2, 30, RED);
@@ -60,7 +60,7 @@ int main()
     }
 
     // De-Initialization
-    unload_characters();
+    unload_gameplay();
     CloseWindow();
 
     return 0;

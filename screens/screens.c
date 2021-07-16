@@ -7,7 +7,7 @@ static const int MOB_QUANTITY = 7;
 Character *player;
 Character **mob;
 
-void init_characters(void)
+void init_gameplay(void)
 {
     player = load_player();
     mob = (Character **)malloc((float)(MOB_QUANTITY) * sizeof(Character));
@@ -18,7 +18,7 @@ void init_characters(void)
     }
 }
 
-void move_characters(void)
+void update_gameplay(void)
 {
     assemble_player_movement(player);
 
@@ -29,7 +29,7 @@ void move_characters(void)
 
 }
 
-void draw_characters(void)
+void draw_gameplay(void)
 {
     for (int i = 0; i < MOB_QUANTITY; i++)
     {
@@ -39,7 +39,7 @@ void draw_characters(void)
     draw_character(player);
 }
 
-void unload_characters(void)
+void unload_gameplay(void)
 {
     unload_character(player);
 

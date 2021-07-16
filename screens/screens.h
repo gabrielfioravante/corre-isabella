@@ -1,7 +1,7 @@
 #include <stdbool.h>
 // GAMEPLAY
-void init_characters(void);
-void move_characters(void);
-void draw_characters(void);
-void unload_characters(void);
+void init_gameplay(void);
+void update_gameplay(void);
+void draw_gameplay(void);
+void unload_gameplay(void);
 bool gameplay_should_end(void);
