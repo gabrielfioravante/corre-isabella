@@ -29,7 +29,7 @@ Character *load_player(void)
     return player;
 }
 
-void set_player_direction(Character *player)
+static void set_player_direction(Character *player)
 {
     player->direction.x = 0;
     player->direction.y = 0;
@@ -44,7 +44,7 @@ void set_player_direction(Character *player)
         player->direction.y = 1;
 }
 
-void animate_player(Character *player, int FPS)
+static void animate_player(Character *player, int FPS)
 {
     player->animation.frames_counter++;
 
@@ -82,7 +82,7 @@ void animate_player(Character *player, int FPS)
     }
 }
 
-void assemble_player_movement(Character *player)
+void player_movement(Character *player)
 {
     set_player_direction(player);
     move_character(player);

@@ -26,16 +26,11 @@ void unload_character(Character *character);
 
 // Player
 Character *load_player(void);
-void set_player_direction(Character *player);
-void animate_player(Character *player, int FPS);
-void assemble_player_movement(Character *player);
+void player_movement(Character *player);
 
 // Mob
 Character *load_mob(void);
-void set_mob_direction(Character *mob, Character *player);
-void animate_mob(Character *mob, int FPS);
-void change_mob_direction_over_time(Character *mob, Character *player);
-void assemble_mob_movement(Character *mob, Character *player);
+void mob_movement(Character *mob, Vector2 target_position);
 
 // Collision
 bool are_characters_colliding(Character *player, Character *mob);

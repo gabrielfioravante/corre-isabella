@@ -22,11 +22,11 @@ void init_gameplay(void)
 
 void update_gameplay(void)
 {
-    assemble_player_movement(player);
+    player_movement(player);
 
     for (int i = 0; i < MOB_QUANTITY; i++)
     {
-        assemble_mob_movement(*(mob + i), player);
+        mob_movement(*(mob + i), player->position);
     }
 
 }

@@ -29,29 +29,29 @@ Character *load_mob(void)
     return mob;
 }
 
-void set_mob_direction(Character *mob, Character *player)
+static void set_mob_direction(Character *mob, Vector2 target_position)
 {
-    if(player->position.x > mob->position.x)
+    if(target_position.x > mob->position.x)
     {
         mob->direction.x = 1;
     }
-    else if (player->position.x < mob->position.x)
+    else if (target_position.x < mob->position.x)
     {
         mob->direction.x = -1;
     }
 
 
-    if(player->position.y > mob->position.y)
+    if(target_position.y > mob->position.y)
     {
         mob->direction.y = 1;
     }
-    else if (player->position.y < mob->position.y)
+    else if (target_position.y < mob->position.y)
     {
         mob->direction.y = -1;
     }
 }
 
-void animate_mob(Character *mob, int FPS)
+static void animate_mob(Character *mob, int FPS)
 {
     mob->animation.frames_counter++;
 
@@ -89,13 +89,13 @@ void animate_mob(Character *mob, int FPS)
     }
 }
 
-void change_mob_direction_over_time(Character *mob, Character *player)
+static void change_mob_direction_over_time(Character *mob, Vector2 target_position)
 {
     static int frames_counter = 0;
 
     if (frames_counter > 20)
     {
-        set_mob_direction(mob, player);
+        set_mob_direction(mob, target_position);
         frames_counter = 0;
     }
     else
@@ -104,9 +104,9 @@ void change_mob_direction_over_time(Character *mob, Character *player)
     }
 }
 
-void assemble_mob_movement(Character *mob, Character *player)
+void mob_movement(Character *mob, Vector2 target_position)
 {
-    change_mob_direction_over_time(mob, player);
+    change_mob_direction_over_time(mob, target_position);
     animate_mob(mob, 60);
     move_character(mob);
 }
