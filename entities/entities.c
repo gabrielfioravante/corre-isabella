@@ -39,3 +39,14 @@ bool are_characters_colliding(Character *player, Character *mob)
     Rectangle player_rectangle = {player->position.x, player->position.y, player->frame.height / 2, player->frame.width / 2};
     return CheckCollisionRecs(player_rectangle, mob_rectangle);
 }
+
+Texture2D load_background(const char* file_path)
+{
+   Texture2D background = LoadTexture(file_path);
+   return background;
+}
+
+void unload_background(Texture2D background)
+{
+   UnloadTexture(background);
+}

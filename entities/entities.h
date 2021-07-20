@@ -32,11 +32,15 @@ void assemble_player_movement(Character *player);
 
 // Mob
 Character *load_mob(void);
-void set_mob_direction(Character *mob);
+void set_mob_direction(Character *mob, Character *player);
 void animate_mob(Character *mob, int FPS);
-void change_mob_direction_over_time(Character *mob);
-void assemble_mob_movement(Character *mob);
+void change_mob_direction_over_time(Character *mob, Character *player);
+void assemble_mob_movement(Character *mob, Character *player);
 
 // Collision
 bool are_characters_colliding(Character *player, Character *mob);
+
+// Background
+Texture2D load_background(const char* file_path);
+void unload_background(Texture2D background);
 #endif

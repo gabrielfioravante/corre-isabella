@@ -2,14 +2,16 @@
 #include "screens.h"
 #include <stdlib.h>
 
-static const int MOB_QUANTITY = 7;
+static const int MOB_QUANTITY = 1;
 
 Character *player;
 Character **mob;
+Texture2D background;
 
 void init_gameplay(void)
 {
     player = load_player();
+    background = load_background("resources/gameplay-bg.png");
     mob = (Character **)malloc((float)(MOB_QUANTITY) * sizeof(Character));
 
     for (int i = 0; i < MOB_QUANTITY; i++)
@@ -24,13 +26,15 @@ void update_gameplay(void)
 
     for (int i = 0; i < MOB_QUANTITY; i++)
     {
-        assemble_mob_movement(*(mob + i));
+        assemble_mob_movement(*(mob + i), player);
     }
 
 }
 
 void draw_gameplay(void)
 {
+    DrawTexture(background, 0, 0, RAYWHITE);
+
     for (int i = 0; i < MOB_QUANTITY; i++)
     {
         draw_character(*(mob + i));
@@ -42,6 +46,7 @@ void draw_gameplay(void)
 void unload_gameplay(void)
 {
     unload_character(player);
+    unload_background(background);
 
     for (int i = 0; i < MOB_QUANTITY; i++)
     {

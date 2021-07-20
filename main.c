@@ -14,8 +14,8 @@ int main()
     srand(time(NULL));
 
     // Initialization
-    const int screenWidth = 922;
-    const int screenHeight = 519;
+    const int screenWidth = 1024;
+    const int screenHeight = 576;
     game_screen current_screen = GAMEPLAY;
 
     InitWindow(screenWidth, screenHeight, "Corre, Isabella!");

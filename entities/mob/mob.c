@@ -29,24 +29,25 @@ Character *load_mob(void)
     return mob;
 }
 
-void set_mob_direction(Character *mob)
+void set_mob_direction(Character *mob, Character *player)
 {
-    if (mob->position.x <= MOB_BOX_SIZE * 2 || mob->position.x >= (float)GetScreenWidth() - (MOB_BOX_SIZE * 2))
+    if(player->position.x > mob->position.x)
     {
-        mob->direction.x = mob->direction.x * -1;
+        mob->direction.x = 1;
     }
-    else
+    else if (player->position.x < mob->position.x)
     {
-        mob->direction.x = generate_random_int(1, -1);
+        mob->direction.x = -1;
     }
 
-    if (mob->position.y <= MOB_BOX_SIZE * 2 || mob->position.y >= (float)GetScreenHeight() - (MOB_BOX_SIZE * 2))
+
+    if(player->position.y > mob->position.y)
     {
-        mob->direction.y = mob->direction.y * -1;
+        mob->direction.y = 1;
     }
-    else
+    else if (player->position.y < mob->position.y)
     {
-        mob->direction.y = generate_random_int(1, -1);
+        mob->direction.y = -1;
     }
 }
 
@@ -88,13 +89,13 @@ void animate_mob(Character *mob, int FPS)
     }
 }
 
-void change_mob_direction_over_time(Character *mob)
+void change_mob_direction_over_time(Character *mob, Character *player)
 {
     static int frames_counter = 0;
 
-    if (frames_counter > 60)
+    if (frames_counter > 20)
     {
-        set_mob_direction(mob);
+        set_mob_direction(mob, player);
         frames_counter = 0;
     }
     else
@@ -103,9 +104,9 @@ void change_mob_direction_over_time(Character *mob)
     }
 }
 
-void assemble_mob_movement(Character *mob)
+void assemble_mob_movement(Character *mob, Character *player)
 {
-    change_mob_direction_over_time(mob);
+    change_mob_direction_over_time(mob, player);
     animate_mob(mob, 60);
     move_character(mob);
 }
