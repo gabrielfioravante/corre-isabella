@@ -16,7 +16,7 @@ int main()
     // Initialization
     const int screenWidth = 1024;
     const int screenHeight = 576;
-    game_screen current_screen = GAMEPLAY;
+    game_screen current_screen = INTRO;
 
     InitWindow(screenWidth, screenHeight, "Corre, Isabella!");
     init_gameplay();
@@ -30,6 +30,10 @@ int main()
         switch (current_screen)
         {
             case INTRO:
+                if(IsKeyPressed(KEY_ENTER)) 
+                {
+                    current_screen = GAMEPLAY;
+                }
                 break;
             case GAMEPLAY:
                 update_gameplay();
@@ -51,6 +55,7 @@ int main()
         switch (current_screen)
         {
             case INTRO:
+                draw_intro();
                 break;
             case GAMEPLAY:
                 draw_gameplay();

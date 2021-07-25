@@ -1,4 +1,8 @@
 #include <stdbool.h>
+
+// INTRO
+void draw_intro(void);
+
 // GAMEPLAY
 void init_gameplay(void);
 void update_gameplay(void);

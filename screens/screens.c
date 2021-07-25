@@ -8,11 +8,19 @@ Character *player;
 Character **mob;
 Texture2D background;
 
+// INTRO
+void draw_intro(void)
+{
+    DrawTexture(background, 0, 0, RAYWHITE);
+    DrawText("Corre, Isabella!", 280, GetScreenHeight() / 2.2, 60, PINK);
+    DrawText("Pressione ENTER para iniciar ou ESC para sair.", 310, GetScreenHeight() / 1.75, 18, PINK);
+}
+
 // GAMEPLAY
 void init_gameplay(void)
 {
-    player = load_player();
     background = load_background("resources/gameplay-bg.png");
+    player = load_player();
     mob = (Character **)malloc((float)(MOB_QUANTITY) * sizeof(Character));
 
     for (int i = 0; i < MOB_QUANTITY; i++)
@@ -89,5 +97,6 @@ bool gameplay_should_end(void)
 void draw_ending(void)
 {
     DrawTexture(background, 0, 0, RAYWHITE);
-    DrawText("Você não correu o bastante! :(", 280, GetScreenHeight() / 2.2, 30, RED);
+    DrawText("Você não correu o bastante! :(", 200, GetScreenHeight() / 2.2, 40, PINK);
+    DrawText("Pressione ENTER para jogar novamente", 310, GetScreenHeight() / 1.8, 20, PINK);
 }
