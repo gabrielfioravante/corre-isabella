@@ -53,13 +53,12 @@ void reset_gameplay(void)
 void draw_gameplay(void)
 {
     DrawTexture(background, 0, 0, RAYWHITE);
+    draw_character(player);
 
     for (int i = 0; i < MOB_QUANTITY; i++)
     {
         draw_character(*(mob + i));
     }
-
-    draw_character(player);
 }
 
 void unload_gameplay(void)

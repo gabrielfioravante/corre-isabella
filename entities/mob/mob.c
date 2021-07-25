@@ -104,7 +104,7 @@ static void animate_mob(Character *mob, int FPS)
 static void change_mob_direction_over_time(Character *mob, Vector2 target_position)
 {
     static int frames_counter = 0;
-    if (frames_counter > 20)
+    if (frames_counter > 10)
     {
         generate_random_int(1, 0) == 1 ? set_mob_horizontal_direction(mob, target_position) : set_mob_vertical_direction(mob, target_position);   
         frames_counter = 0;
