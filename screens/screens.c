@@ -81,10 +81,8 @@ bool gameplay_should_end(void)
         collision_count = 0;
         return true;
     }
-    else
-    { 
+
         return false;
-    }
 }
 
 // ENDING
