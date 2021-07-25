@@ -5,6 +5,12 @@
 
 #define PLAYER_BOX_SIZE 64.0
 
+void set_player_position_to_initial(Character *player)
+{
+    player->position.x = ((float)GetScreenWidth() / 2) - PLAYER_BOX_SIZE;
+    player->position.y = 0;
+}
+
 Character *load_player(void)
 {
     Character *player = (Character *)malloc(sizeof(Character));
@@ -23,8 +29,7 @@ Character *load_player(void)
     player->frame.width = PLAYER_BOX_SIZE;
     player->frame.height = PLAYER_BOX_SIZE;
 
-    player->position.x = ((float)GetScreenWidth() / 2) - PLAYER_BOX_SIZE;
-    player->position.y = 0;
+    set_player_position_to_initial(player);
 
     return player;
 }

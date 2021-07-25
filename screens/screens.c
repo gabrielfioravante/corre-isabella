@@ -8,6 +8,7 @@ Character *player;
 Character **mob;
 Texture2D background;
 
+// GAMEPLAY
 void init_gameplay(void)
 {
     player = load_player();
@@ -29,6 +30,16 @@ void update_gameplay(void)
         mob_movement(*(mob + i), player->position);
     }
 
+}
+
+void reset_gameplay(void)
+{
+    set_player_position_to_initial(player);
+
+    for (int i = 0; i < MOB_QUANTITY; i++)
+    {
+        set_mob_position_to_initial(*(mob + i));
+    }
 }
 
 void draw_gameplay(void)
@@ -65,5 +76,20 @@ bool gameplay_should_end(void)
             collision_count++;
     }
 
-    return collision_count >= COLLISION_LIMIT;
+    if(collision_count >= COLLISION_LIMIT)
+    {
+        collision_count = 0;
+        return true;
+    }
+    else
+    { 
+        return false;
+    }
+}
+
+// ENDING
+void draw_ending(void)
+{
+    DrawTexture(background, 0, 0, RAYWHITE);
+    DrawText("Você não correu o bastante! :(", 280, GetScreenHeight() / 2.2, 30, RED);
 }

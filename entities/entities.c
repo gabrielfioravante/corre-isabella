@@ -4,6 +4,10 @@
 #include "raylib.h"
 #include <math.h>
 
+#define PLAYER_BOX_SIZE 64.0
+#define MOB_BOX_SIZE 64.0
+
+// CHARACTERS
 void unload_character(Character *character)
 {
     UnloadTexture(character->texture);
@@ -40,6 +44,7 @@ bool are_characters_colliding(Character *player, Character *mob)
     return CheckCollisionRecs(player_rectangle, mob_rectangle);
 }
 
+// BACKGROUND
 Texture2D load_background(const char* file_path)
 {
    Texture2D background = LoadTexture(file_path);

@@ -36,6 +36,11 @@ int main()
                 if(gameplay_should_end()) current_screen = ENDING;
                 break;
             case ENDING:
+                if(IsKeyPressed(KEY_ENTER)) 
+                {
+                    reset_gameplay();
+                    current_screen = GAMEPLAY;
+                }
                 break;
         }
 
@@ -51,7 +56,7 @@ int main()
                 draw_gameplay();
                 break;
             case ENDING:
-                DrawText("Você não correu o bastante! :(", 220, GetScreenHeight() / 2, 30, RED);
+                draw_ending();
                 break;
         }
 

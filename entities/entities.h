@@ -23,6 +23,7 @@ typedef struct Character
 void draw_character(Character *character);
 void move_character(Character *character);
 void unload_character(Character *character);
+void set_player_position_to_initial(Character *player);
 
 // Player
 Character *load_player(void);
@@ -31,6 +32,7 @@ void player_movement(Character *player);
 // Mob
 Character *load_mob(void);
 void mob_movement(Character *mob, Vector2 target_position);
+void set_mob_position_to_initial(Character *mob);
 
 // Collision
 bool are_characters_colliding(Character *player, Character *mob);
