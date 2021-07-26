@@ -30,10 +30,7 @@ int main()
         switch (current_screen)
         {
             case INTRO:
-                if(IsKeyPressed(KEY_ENTER)) 
-                {
-                    current_screen = GAMEPLAY;
-                }
+                if(IsKeyPressed(KEY_ENTER)) current_screen = GAMEPLAY;
                 break;
             case GAMEPLAY:
                 update_gameplay();
