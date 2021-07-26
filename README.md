@@ -16,3 +16,6 @@ Um pequeno jogo desenvolvido em C.
   ./game #Para executar o jogo em plataformas Unix
   game   #Para executar o jogo na plataforma Windows
   ```
+## Agradecimentos
+- [Kenney](https://kenney.nl/)
+- [Universal LPC Spritesheet Character Generator](https://github.com/sanderfrenken/Universal-LPC-Spritesheet-Character-Generator)
